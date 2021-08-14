@@ -8,7 +8,8 @@ export namespace AppDb {
     try {
       dbConnection = (
         await MongoClient.connect(MONGO_DB_URI, {
-          loggerLevel: "debug"
+          loggerLevel: "error",
+          useUnifiedTopology: true
         })
       ).db()
     } catch (err) {
