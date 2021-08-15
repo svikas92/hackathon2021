@@ -1,6 +1,6 @@
 import { io } from "socket.io-client"
 import { AppLoggers } from "./utils/loggers"
-const socket = io("http://192.168.2.135:3000")
+const socket = io("http://192.168.10.144:3000")
 
 socket.on("connect", () => {
   // either with send()

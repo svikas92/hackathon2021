@@ -1,6 +1,7 @@
 import { AppDb } from "../db"
 import { io } from "../server"
 import { AppLoggers } from "../utils/loggers"
+import { NotificationService } from "./notification.service"
 
 export namespace EventStore {
   const getEventCollection = () => AppDb.getCollection<any>("userEvents")
@@ -31,24 +32,13 @@ export namespace EventStore {
         EventStore.fire({
           type: "APP_IDLE",
           data: {
-            imgUrl: getInactiveMsg()
+            imgUrl: NotificationService.getInactiveMsg()
           }
         })
       }, defaultIdleTime)
     }
 
     timer.refresh()
-  }
-
-  const inactiveImages = [
-    "https://dev-media-uploader.s3.ap-southeast-1.amazonaws.com/hackathon2021/inactive-1.jpg",
-    "https://dev-media-uploader.s3.ap-southeast-1.amazonaws.com/hackathon2021/inactive-2.jpg",
-    "https://dev-media-uploader.s3.ap-southeast-1.amazonaws.com/hackathon2021/inactive-3.jpg",
-    "https://dev-media-uploader.s3.ap-southeast-1.amazonaws.com/hackathon2021/personlized-1.jpeg"
-  ]
-
-  const getInactiveMsg = () => {
-    return inactiveImages[Math.floor(Math.random() * inactiveImages.length)]
   }
 
   export const unsubscribe = () => {

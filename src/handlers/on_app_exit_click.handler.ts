@@ -1,4 +1,5 @@
 import { EventStore } from "../services"
+import { NotificationService } from "../services/notification.service"
 
 export const onAppExitClick = (event: any) => {
   const data = {
@@ -12,16 +13,7 @@ export const onAppExitClick = (event: any) => {
   EventStore.fire({
     type: "APP_EXIT_CLICKED_RESPONSE",
     data: {
-      imgUrl: getExitMsg()
+      imgUrl: NotificationService.getExitMsg()
     }
   })
-}
-
-const exitImages = [
-  "https://dev-media-uploader.s3.ap-southeast-1.amazonaws.com/hackathon2021/exit-1.jpg",
-  "https://dev-media-uploader.s3.ap-southeast-1.amazonaws.com/hackathon2021/exit-2.jpg"
-]
-
-const getExitMsg = () => {
-  return exitImages[Math.floor(Math.random() * exitImages.length)]
 }
